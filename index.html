@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessible Fill-in-the-Blank Activity Creator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Accessible Fill-in-the-Blank Activity Creator</h1>
+      <p>Teachers can create multi-sentence activities, save them in the browser, and export a standalone student file.</p>
+    </header>
+
+    <section aria-labelledby="instructions-heading">
+      <h2 id="instructions-heading">How to create an activity</h2>
+      <p>Enter each sentence with <strong>[blank]</strong> where the missing word should go. Provide several word options, and choose the correct answer.</p>
+      <p>The exported student file will present one sentence at a time for students to complete.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="sentence-entry-heading">
+      <h2 id="sentence-entry-heading">Add a new sentence</h2>
+      <form id="sentence-form">
+        <div class="form-group">
+          <label for="sentence-text">Sentence text</label>
+          <textarea id="sentence-text" rows="3" aria-describedby="sentence-help">Type a sentence with [blank] where the missing word should appear.</textarea>
+          <div id="sentence-help" class="help-text">Example: The cat chased the [blank] across the yard.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="option-list">Word options</label>
+          <input id="option-list" type="text" aria-describedby="options-help" placeholder="several, example, words, here" />
+          <div id="options-help" class="help-text">Enter options separated by commas. Include the correct answer in the list if applicable.</div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input id="has-correct" type="checkbox" />
+            This sentence has a correct answer
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="correct-answer">Correct answer</label>
+          <input id="correct-answer" type="text" placeholder="Type the correct word exactly (only if checked above)" />
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="add-sentence">Add sentence</button>
+          <button type="button" id="clear-entry">Clear</button>
+        </div>
+      </form>
+      <div id="form-status" class="help-text" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="color-scheme-heading">
+      <h2 id="color-scheme-heading">Color scheme for student activity</h2>
+      <div class="form-group">
+        <label for="color-scheme">Select color scheme</label>
+        <select id="color-scheme">
+          <option value="white">White Background - Black Text</option>
+          <option value="black-red">Black Background - Red Text</option>
+          <option value="black-yellow">Black Background - Yellow Text</option>
+          <option value="black-green">Black Background - Green Text</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="activity-list-heading">
+      <h2 id="activity-list-heading">Current activity</h2>
+      <div id="activity-info" class="status-box" aria-live="polite">No sentences added yet.</div>
+      <ul id="sentence-list" class="sentence-list" aria-live="polite"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="activity-actions-heading">
+      <h2 id="activity-actions-heading">Save, load, and export</h2>
+      <div class="form-group">
+        <label for="activity-name">Activity name</label>
+        <input id="activity-name" type="text" placeholder="My science activity" />
+      </div>
+      <div class="button-row">
+        <button type="button" id="save-activity">Save activity</button>
+        <button type="button" id="load-activity">Load activity</button>
+      </div>
+      <div class="form-group">
+        <label for="saved-activities">Saved activities</label>
+        <select id="saved-activities" aria-label="Choose a saved activity"></select>
+      </div>
+      <div class="button-row">
+        <button type="button" id="export-student">Export student HTML</button>
+        <button type="button" id="clear-activity">Clear activity</button>
+      </div>
+      <div id="export-status" class="help-text" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="accessibility-heading">
+      <h2 id="accessibility-heading">Accessibility notes</h2>
+      <ul>
+        <li>All controls support keyboard navigation.</li>
+        <li>The student page will include a progress indicator and live updates.</li>
+        <li>High contrast focus outlines help users find inputs and buttons.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="teacher.js"></script>
+</body>
+</html>
